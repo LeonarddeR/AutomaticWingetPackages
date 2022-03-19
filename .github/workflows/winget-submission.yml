@@ -9,4 +9,15 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Download winget
-        run: Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
+        run: |
+          Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
+      - name: Update NVDA
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
+        run: |
+          .\NVAccess.NVDA\update.ps1
+      - name: Update REAPER
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
+        run: |
+          .\Cockos.REAPER\update.ps1
