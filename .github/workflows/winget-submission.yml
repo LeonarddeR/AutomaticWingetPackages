@@ -1,6 +1,7 @@
 name: Automatically submit several package updates to Windows Package Manager Community Repository
 
 on:
+  push:
   workflow_dispatch:
   schedule:
     - cron: "0 */2 * * *"
