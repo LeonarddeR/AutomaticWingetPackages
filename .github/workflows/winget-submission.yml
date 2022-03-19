@@ -1,0 +1,12 @@
+name: Automatically submit several package updates to Windows Package Manager Community Repository
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+jobs:
+  winget:
+    name: Publish winget packages
+    runs-on: windows-latest
+    steps:
+      - name: Download winget
+        run: Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
