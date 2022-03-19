@@ -6,6 +6,6 @@ $url = "https://cockos.com/reaper/latestversion?version=$wingetVersion"
 $result = Invoke-RestMethod -Uri $url
 $mostRecentVersion = $result.SubString(0, 4)
 $shortVersion = $mostRecentVersion -Replace '\.'
-if ($mostRecentVersion -Gt $wingetVersion) {
+if ($mostRecentVersion -Gt $wingetVersion -and (Get-WingetPullRequestCount $packageName $mostRecentVersion) -Eq 0) {
     Publish-WingetPackagePullRequest -PackageName $packageName -Version $mostRecentVersion -urls https://www.reaper.fm/files/$($shortVersion[0]).x/reaper$($shortVersion)_x64-install.exe, https://www.reaper.fm/files/$($shortVersion[0]).x/reaper$($shortVersion)-install.exe
 }
