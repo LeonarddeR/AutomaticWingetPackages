@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Download winget
+      - name: Install Winget
+        run: |
+          .\Install-Winget.ps1
+      - name: Download wingetcreate
         run: |
           Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
       - name: Update NVDA
