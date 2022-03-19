@@ -9,6 +9,8 @@ jobs:
     name: Publish winget packages
     runs-on: windows-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - name: Download winget
         run: |
           Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
