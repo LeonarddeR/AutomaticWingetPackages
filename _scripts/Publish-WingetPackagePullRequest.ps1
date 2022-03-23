@@ -15,7 +15,7 @@ function Publish-WingetPackagePullRequest {
 		[string]
 		$Token = $env:GITHUB_PERSONAL_ACCESS_TOKEN
 	)
-	$execStr = "wingetcreate update $PackageName --version $version -u $([String]::Join(', ', $urls))"
+	$execStr = "wingetcreate update $PackageName --version $version -u $([String]::Join(' ', $urls))"
 	if ($Submit) {
 		$execStr += " -s"
 	}
