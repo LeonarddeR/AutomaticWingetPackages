@@ -5,7 +5,7 @@ function Get-WingetLastPackageVersion {
 		[string]
 		$PackageName
 	)
-	$result = (winget show -e $PackageName) | Select-String "version: (.+)"
+	$result = (winget show --accept-source-agreements -e $PackageName) | Select-String "version: (.+)"
 	Write-Information $result
 	return $result.Matches.Groups[1].Value
 }
