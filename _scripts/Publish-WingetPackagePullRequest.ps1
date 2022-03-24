@@ -11,7 +11,7 @@ function Publish-WingetPackagePullRequest {
 		[string[]]
 		$Urls,
 		[Switch]
-		$Submit,
+		$Submit = $true,
 		[string]
 		$Token = $env:GITHUB_PERSONAL_ACCESS_TOKEN
 	)
