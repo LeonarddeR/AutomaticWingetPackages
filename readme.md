@@ -1,6 +1,6 @@
-![Build status](https://github.com/leonardder/AutomaticWingetPackagesPublic/actions/workflows/winget-submission.yml/badge.svg)
+![Build status](https://github.com/leonardder/AutomaticWingetPackages/actions/workflows/winget-submission.yml/badge.svg)
 
-This repository facilitates automatic updates for packages in de repository of [the Windows Package Manager CLI (aka winget)](https://github.com/microsoft/winget-cli). Packages are submitted on behalf of @LeonarddeR.
+This repository facilitates automatic updates for packages in de repository of [the Windows Package Manager CLI (aka winget)](https://github.com/microsoft/winget-cli). Packages are submitted on behalf of [@LeonarddeR](https://github.com/leonardder/).
 
 ## Packages
 
@@ -23,4 +23,7 @@ The most recent version string is then determined from the product version of th
 The determined version  will be compared against the version that is currently the latest version available in de winget repository.
 
 ## Contributing
-Feel free to fork this repository for yourself. Note that the publishing process relies on a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). You can also file an issue to suggest package additions. Note that only those applications will be supported that have a reliable way to determine the latest version.
+Feel free to fork this repository for yourself.
+Note that the publishing process relies on a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+You can also file an issue to suggest package additions.
+Only those applications will be supported that have a reliable method to determine the most recent app version.
