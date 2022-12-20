@@ -5,7 +5,8 @@ function Get-WingetLastPackageVersion {
 		[string]
 		$PackageName
 	)
-	$result = (winget show --accept-source-agreements -e $PackageName) | Select-String "version: (.+)"
-	Write-Information $result
-	return $result.Matches.Groups[1].Value
+	# Construct a path from the package name
+	$path = "winget-pkgs\manifests\$($PackageName[0])\$($PackageName.Replace('.', '\'))"
+	$yamls = Get-ChildItem -Path "$($path)\*\$($PackageName).yaml"
+	return $yamls[-1].Directory.Name
 }

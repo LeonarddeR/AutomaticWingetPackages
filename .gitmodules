@@ -1,0 +1,6 @@
+[submodule "winget-pkgs"]
+	path = winget-pkgs
+	url = https://github.com/microsoft/winget-pkgs
+	branch = master
+	ignore = dirty
+	shallow = true

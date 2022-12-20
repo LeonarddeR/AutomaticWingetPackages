@@ -12,9 +12,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Install Winget
-        run: |
-          .\Install-Winget.ps1
+        with:
+          submodules: true
       - name: Download wingetcreate
         run: |
           Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
