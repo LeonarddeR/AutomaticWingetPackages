@@ -8,6 +8,6 @@ Write-Information "Downloading most recent executable for $($PackageName)"
 Invoke-RestMethod -Uri $latestExeUrl -OutFile $localExePath
 $mostRecentVersion = (Get-ItemProperty $localExePath).VersionInfo.ProductVersion
 Write-Information "Most recent version downloaded is version $($mostRecentVersion ). Comparing against version $($wingetVersion) in WinGet repository"
-if ($mostRecentVersion -Gt $wingetVersion -and (Get-WingetPullRequestCount $packageName $mostRecentVersion) -Eq 0) {
+if ([Version]$mostRecentVersion -Gt [Version]$wingetVersion -and (Get-WingetPullRequestCount $packageName $mostRecentVersion) -Eq 0) {
     Publish-WingetPackagePullRequest -PackageName $packageName -Version $mostRecentVersion -urls https://downloads.1password.com/win/1PasswordSetup-$($mostRecentVersion).exe, https://downloads.1password.com/win/1PasswordSetup-$($mostRecentVersion).msi
 }
