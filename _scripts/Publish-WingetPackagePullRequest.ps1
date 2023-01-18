@@ -20,7 +20,7 @@ function Publish-WingetPackagePullRequest {
 	if ($Submit) {
 		$execStr += ' -s'
 	}
-	Write-Info "Executing: $($execStr)"
+	Write-Information "Executing: $($execStr)"
 	if (![String]::IsNullOrWhitespace($token)) {
 		$execStr += " -t $token"
 	}
