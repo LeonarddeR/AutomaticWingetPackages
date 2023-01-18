@@ -18,11 +18,11 @@ function Publish-WingetPackagePullRequest {
 	$execStr = (where.exe wingetcreate.exe)
 	$execStr += " update $PackageName --version $version -u $([String]::Join(' ', $urls))"
 	if ($Submit) {
-		$execStr += " -s"
+		$execStr += ' -s'
 	}
+	Write-Info "Executing: $($execStr)"
 	if (![String]::IsNullOrWhitespace($token)) {
 		$execStr += " -t $token"
 	}
-	write-warning $execStr
 	Invoke-Expression $execStr
 }
