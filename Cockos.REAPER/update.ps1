@@ -5,7 +5,7 @@ $wingetVersion = (Get-WingetLastPackageVersion $packageName)
 Write-Information "Downloading release notes from Cockos using $($wingetVersion) as reference version"
 $url = "https://cockos.com/reaper/latestversion?version=$wingetVersion"
 $result = Invoke-RestMethod -Uri $url
-$mostRecentVersion = $result.SubString(0, 4)
+$mostRecentVersion = ($result -SPlit '\n')[0]
 $shortVersion = $mostRecentVersion -Replace '\.'
 Write-Information "Most recent version available is version $($mostRecentVersion ). Comparing against version $($wingetVersion) in WinGet repository"
 if ([Version]$mostRecentVersion -Gt [Version]$wingetVersion -and (Get-WingetPullRequestCount $packageName $mostRecentVersion) -Eq 0) {
