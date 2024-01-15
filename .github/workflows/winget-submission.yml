@@ -11,9 +11,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Check out WinGet repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: microsoft/winget-pkgs
           path: winget-pkgs
