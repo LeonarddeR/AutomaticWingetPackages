@@ -1,9 +1,8 @@
 . $PSScriptRoot\..\_scripts\all.ps1
 
 $packageName = 'NVAccess.NVDA'
-$wingetPackage = (Get-WinGetPackage -Id $packageName)
-write-information "Package is: $wingetPackage"
-$wingetVersion = $wingetPackage.AvailableVersions[0]
+$wingetPackage = (Find-WinGetPackage -Id $packageName -COunt 1)
+$wingetVersion = $wingetPackage.Version
 $url = "https://www.nvaccess.org/nvdaUpdateCheck?autoCheck=False&allowUsageStats=False&version=$wingetVersion&versionType=stable&osVersion=10.0.17763&x64=True"
 Write-Information "Getting most recent version from NVAccess using $($wingetVersion) as reference version"
 $result = Invoke-RestMethod -Uri $url

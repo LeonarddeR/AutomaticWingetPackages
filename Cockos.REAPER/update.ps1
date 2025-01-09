@@ -1,14 +1,14 @@
 . $PSScriptRoot\..\_scripts\all.ps1
 
 $packageName = 'Cockos.REAPER'
-$wingetPackage = (Get-WinGetPackage -Id $packageName)
-$wingetVersion = $wingetPackage.AvailableVersions[0]
+$wingetPackage = (Find-WinGetPackage -Id $packageName -Count 1)
+$wingetVersion = $wingetPackage.Version
 Write-Information "Downloading release notes from Cockos using $($wingetVersion) as reference version"
 $url = "https://cockos.com/reaper/latestversion?version=$wingetVersion"
 $result = Invoke-RestMethod -Uri $url
 $mostRecentVersion = ($result -SPlit '\n')[0]
 $shortVersion = $mostRecentVersion -Replace '\.'
 Write-Information "Most recent version available is version $($mostRecentVersion ). Comparing against version $($wingetVersion) in WinGet repository"
-if ($wingetPackage.CompareToVersion($mostRecentVersion) -eq 'Lesser' -and (Get-WingetPullRequestCount $packageName $mostRecentVersion) -Eq 0) {
+if ($wingetVersion.CompareTo($mostRecentVersion) -eq -1 -and (Get-WingetPullRequestCount $packageName $mostRecentVersion) -Eq 0) {
     Publish-WingetPackagePullRequest -PackageName $packageName -Version $mostRecentVersion -urls https://www.reaper.fm/files/$($shortVersion[0]).x/reaper$($shortVersion)_x64-install.exe, https://www.reaper.fm/files/$($shortVersion[0]).x/reaper$($shortVersion)-install.exe, https://www.reaper.fm/files/$($shortVersion[0]).x/reaper$($shortVersion)_win11_arm64ec_beta-install.exe
 }
