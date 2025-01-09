@@ -8,18 +8,14 @@ on:
 jobs:
   winget:
     name: Publish winget packages
-    runs-on: windows-latest
+    runs-on: windows-2025
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Check out WinGet repository
-        uses: actions/checkout@v4
-        with:
-          repository: microsoft/winget-pkgs
-          path: winget-pkgs
-      - name: Download wingetcreate
-        run: |
-          Invoke-WebRequest https://aka.ms/wingetcreate/latest -OutFile wingetcreate.exe
+      - name: Install Winget PowerShell
+        run:           Install-PSResource Microsoft.WinGet.Client   -TrustRepository
+      - name: Install wingetcreate
+        run: Install-WinGetPackage -Id Microsoft.Wingetcreate
       - name: Update NVDA
         env:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
