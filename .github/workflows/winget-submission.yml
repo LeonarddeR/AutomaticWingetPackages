@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+      - name: Update PSResource
+        run:           Update-PSResource Microsoft.PowerShell.PSResourceGet -TrustRepository -Scope AllUsers
       - name: Install Winget PowerShell
         run:           Install-PSResource Microsoft.WinGet.Client   -TrustRepository
       - name: Install wingetcreate
