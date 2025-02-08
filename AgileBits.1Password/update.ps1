@@ -7,7 +7,7 @@ param(
 $packageName = 'AgileBits.1Password'
 $wingetPackage = (Find-WinGetPackage -Id $packageName -Count 1)
 $wingetVersion = $wingetPackage.Version
-if ($Null -Eq $ForceVersion) {
+if (-Not $ForceVersion) {
     $latestExeUrl = 'https://downloads.1password.com/win/1PasswordSetup-latest.exe'
     $localExePath = "$($env:TEMP)\1PasswordSetup-latest.exe"
     Write-Information "Downloading most recent executable for $($PackageName)"

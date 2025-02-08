@@ -28,3 +28,8 @@ jobs:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
         run: |
           .\Cockos.REAPER\update.ps1
+      - name: Update 1Password
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
+        run: |
+          .\AgileBits.1Password\update.ps1
