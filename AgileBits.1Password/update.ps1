@@ -19,5 +19,15 @@ else {
 }
 Write-Information "Most recent version downloaded is version $($mostRecentVersion ). Comparing against version $($wingetVersion) in WinGet repository"
 if ([Version]$mostRecentVersion -Gt [Version]$wingetVersion -and (Get-WingetPullRequestCount $packageName $mostRecentVersion -AdditionalCriteria 'NOT beta in:title') -Eq 0) {
-    Publish-WingetPackagePullRequest -PackageName $packageName -Version $mostRecentVersion -urls https://downloads.1password.com/win/1PasswordSetup-$($mostRecentVersion).exe, https://downloads.1password.com/win/1PasswordSetup-$($mostRecentVersion).msi
+    $urls = @("https://downloads.1password.com/win/1PasswordSetup-$($mostRecentVersion).exe", "https://downloads.1password.com/win/1PasswordSetup-$($mostRecentVersion).msi")
+    foreach ($url in $urls) {
+        try {
+            Invoke-WebRequest -Uri $url -Method Head -ErrorAction Stop | Out-Null
+        }
+        catch {
+            Write-Warning $_
+            return
+        }
+    }
+    Publish-WingetPackagePullRequest -PackageName $packageName -Version $mostRecentVersion -urls $urls
 }
