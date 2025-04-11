@@ -16,6 +16,8 @@ jobs:
         run: Install-PSResource Microsoft.PowerShell.PSResourceGet -TrustRepository
       - name: Install Winget PowerShell
         run:           Install-PSResource Microsoft.WinGet.Client   -TrustRepository
+      - name: Update winget
+        run: Update-Winget.ps1
       - name: Install wingetcreate
         run: Install-WinGetPackage -Id Microsoft.Wingetcreate
       - name: Update NVDA
