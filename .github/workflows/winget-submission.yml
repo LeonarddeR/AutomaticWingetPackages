@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Update PSResource
-        run: Install-PSResource Microsoft.PowerShell.PSResourceGet -TrustRepository
       - name: Install Winget PowerShell
         run:           Install-PSResource Microsoft.WinGet.Client   -TrustRepository
       - name: Install wingetcreate
@@ -23,6 +21,11 @@ jobs:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
         run: |
           .\NVAccess.NVDA\update.ps1
+      - name: Update NVDA Beta
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
+        run: |
+          .\NVAccess.NVDA.Beta\update.ps1
       - name: Update REAPER
         env:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
