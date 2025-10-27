@@ -3,7 +3,7 @@
 $packageName = 'NVAccess.NVDA.Beta'
 $wingetPackage = (Find-WinGetPackage -Id $packageName -Count 1)
 $wingetVersion = $wingetPackage.Version
-$url = "https://api.nvaccess.org/nvdaUpdateCheck?autoCheck=False&allowUsageStats=False&version=$wingetVersion&versionType=beta&osVersion=10.0.17763&x64=True"
+$url = "https://api.nvaccess.org/nvdaUpdateCheck?autoCheck=False&allowUsageStats=False&version=$wingetVersion&versionType=beta&x64=False"
 Write-Information "Getting most recent version from NVAccess using $($wingetVersion) as reference version"
 $result = Invoke-RestMethod -Uri $url
 if ($result -Ne [String]::Empty) {
