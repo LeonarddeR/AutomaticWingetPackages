@@ -21,6 +21,11 @@ jobs:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
         run: |
           .\NVAccess.NVDA\update.ps1
+      - name: Update NVDA Beta
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
+        run: |
+          .\NVAccess.NVDA.Beta\update.ps1
       - name: Update REAPER
         env:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
