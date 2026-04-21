@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-2025
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install Winget PowerShell
         run:           Install-PSResource Microsoft.WinGet.Client   -TrustRepository
       - name: Install wingetcreate
