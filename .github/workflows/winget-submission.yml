@@ -22,10 +22,12 @@ jobs:
         pkg: [NVAccess.NVDA, NVAccess.NVDA.Beta, Cockos.REAPER]
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install Winget PowerShell
         run: Install-PSResource Microsoft.WinGet.Client -TrustRepository
       - name: Install wingetcreate
-        run: Install-WinGetPackage -Id Microsoft.Wingetcreate
+        run: |
+          iwr https://aka.ms/wingetcreate/latest -OutFile "$env:RUNNER_TEMP\wingetcreate.exe"
+          "$env:RUNNER_TEMP" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Update ${{ matrix.pkg }}
         run: .\${{ matrix.pkg }}\update.ps1
