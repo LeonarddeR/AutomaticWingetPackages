@@ -15,14 +15,10 @@ function Publish-WingetPackagePullRequest {
 		[string]
 		$Token = $env:GITHUB_PERSONAL_ACCESS_TOKEN
 	)
-	$execStr = (where.exe wingetcreate.exe)
-	$execStr += " update $PackageName --version $version -u $([String]::Join(' ', $urls))"
-	if ($Submit) {
-		$execStr += ' -s'
-	}
-	Write-Information "Executing: $($execStr)"
-	if (![String]::IsNullOrWhitespace($token)) {
-		$execStr += " -t $token"
-	}
-	Invoke-Expression $execStr
+	$exe = (Get-Command wingetcreate.exe).Source
+	$argList = @('update', $PackageName, '--version', $Version, '-u') + $Urls
+	if ($Submit) { $argList += '-s' }
+	Write-Information "Executing: $exe $($argList -join ' ')"
+	if (-not [String]::IsNullOrWhiteSpace($Token)) { $argList += @('-t', $Token) }
+	& $exe @argList
 }

@@ -15,7 +15,11 @@ function Get-WingetPullRequestCount {
 	if (-not [String]::IsNullOrWhiteSpace($AdditionalCriteria)) {
 		$uri += "+$([System.Web.HttpUtility]::UrlEncode($AdditionalCriteria))"
 	}
-	$result = Invoke-RestMethod -Uri $uri -Headers @{Accept = 'application/vnd.github.v3.text-match+json' }
+	$headers = @{ Accept = 'application/vnd.github.v3.text-match+json' }
+	if (-not [String]::IsNullOrWhiteSpace($env:GITHUB_PERSONAL_ACCESS_TOKEN)) {
+		$headers['Authorization'] = "Bearer $env:GITHUB_PERSONAL_ACCESS_TOKEN"
+	}
+	$result = Invoke-RestMethod -Uri $uri -Headers $headers
 	$count = $result.total_count
 	Write-Information "Found $($count) pull requests for $($PackageName) $($Version)"
 	return $count

@@ -5,29 +5,27 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 */2 * * *"
+
+concurrency:
+  group: winget-submission
+  cancel-in-progress: false
+
 jobs:
   winget:
     name: Publish winget packages
     runs-on: windows-2025
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
+    strategy:
+      fail-fast: false
+      matrix:
+        pkg: [NVAccess.NVDA, NVAccess.NVDA.Beta, Cockos.REAPER]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Install Winget PowerShell
-        run:           Install-PSResource Microsoft.WinGet.Client   -TrustRepository
+        run: Install-PSResource Microsoft.WinGet.Client -TrustRepository
       - name: Install wingetcreate
         run: Install-WinGetPackage -Id Microsoft.Wingetcreate
-      - name: Update NVDA
-        env:
-          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
-        run: |
-          .\NVAccess.NVDA\update.ps1
-      - name: Update NVDA Beta
-        env:
-          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
-        run: |
-          .\NVAccess.NVDA.Beta\update.ps1
-      - name: Update REAPER
-        env:
-          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.PAT }}
-        run: |
-          .\Cockos.REAPER\update.ps1
+      - name: Update ${{ matrix.pkg }}
+        run: .\${{ matrix.pkg }}\update.ps1

@@ -14,13 +14,10 @@ Update checking takes place by polling the REAPER update endpoint, passing the v
 
 Update checking takes place by polling the NVDA update endpoint, comparing the version  against the version that is currently the latest version available in de winget repository.
 
-### AgileBits.1Password
-[1Password](https://1password.com/) is a commercial password manager that allows you to store and use strong passwords.
+### NVAccess.NVDA.Beta
+[NonVisual Desktop Access (NVDA)](https://www.nvaccess.org/) beta channel.
 
-Update checking occurs by downloading the most recent version of 1Password, which is always behind de same URL.
-The most recent version string is then determined from the product version of the installer executable.
-[This approach was proposed in the Chocolatey community packages repository](https://github.com/chocolatey-community/chocolatey-packages/issues/1773#issuecomment-1128465417).
-The determined version  will be compared against the version that is currently the latest version available in de winget repository.
+Update checking takes place by polling the NVDA update endpoint using `versionType=beta`, comparing the version against the version currently in the winget repository.
 
 ## Contributing
 Feel free to fork this repository for yourself.
