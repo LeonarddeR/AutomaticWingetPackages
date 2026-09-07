@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pkg: [NVAccess.NVDA, NVAccess.NVDA.Beta, Cockos.REAPER]
+        pkg: [Cockos.REAPER]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v6
