@@ -22,7 +22,7 @@ jobs:
         pkg: [Cockos.REAPER]
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Install Winget PowerShell
         run: Install-PSResource Microsoft.WinGet.Client -TrustRepository
       - name: Update winget
