@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pkg: [Cockos.REAPER]
+        pkg: [Cockos.REAPER, QuinGillespie.Paperback]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v6

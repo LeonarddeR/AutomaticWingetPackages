@@ -19,6 +19,11 @@ Update checking takes place by polling the NVDA update endpoint, comparing the v
 
 Update checking takes place by polling the NVDA update endpoint using `versionType=beta`, comparing the version against the version currently in the winget repository.
 
+### QuinGillespie.Paperback
+[Paperback](https://github.com/trypsynth/paperback) is an accessible, light-weight, cross-platform ebook and document reader.
+
+Update checking takes place by querying the latest stable GitHub release, comparing its tag against the version currently in the winget repository. The x64 and arm64 installers are submitted.
+
 ## Contributing
 Feel free to fork this repository for yourself.
 Note that the publishing process relies on a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
