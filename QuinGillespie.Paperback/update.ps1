@@ -20,5 +20,5 @@ if ([Version]$wingetVersion -lt [Version]$mostRecentVersion -and (Get-WingetPull
         # wingetcreate takes '<url>|<arch>' to force the installer architecture
         "$($asset.browser_download_url)|$arch"
     }
-    Publish-WingetPackagePullRequest -PackageName $packageName -Version $mostRecentVersion -Urls $urls
+    Publish-WingetPackagePullRequest -PackageName $packageName -Version $mostRecentVersion -Urls $urls -ReleaseNotesUrl $release.html_url -ReleaseDate $release.published_at
 }

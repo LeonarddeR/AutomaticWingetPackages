@@ -10,6 +10,10 @@ function Publish-WingetPackagePullRequest {
 		[Parameter(Mandatory)]
 		[string[]]
 		$Urls,
+		[string]
+		$ReleaseNotesUrl,
+		[Nullable[datetime]]
+		$ReleaseDate,
 		[Switch]
 		$Submit = $true,
 		[string]
@@ -17,6 +21,8 @@ function Publish-WingetPackagePullRequest {
 	)
 	$exe = (Get-Command wingetcreate.exe).Source
 	$argList = @('update', $PackageName, '--version', $Version, '-u') + $Urls
+	if (-not [String]::IsNullOrWhiteSpace($ReleaseNotesUrl)) { $argList += @('--release-notes-url', $ReleaseNotesUrl) }
+	if ($null -ne $ReleaseDate) { $argList += @('--release-date', $ReleaseDate.ToString('yyyy-MM-dd', [cultureinfo]::InvariantCulture)) }
 	if ($Submit) { $argList += '-s' }
 	Write-Information "Executing: $exe $($argList -join ' ')"
 	if (-not [String]::IsNullOrWhiteSpace($Token)) { $argList += @('-t', $Token) }
