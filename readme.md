@@ -4,6 +4,11 @@ This repository facilitates automatic updates for packages in de repository of [
 
 ## Packages
 
+### CLARATION.Impactor.CLI
+[Impactor CLI](https://github.com/claration/impactor) (plumesign) is the command-line interface of Impactor, an iOS code signing and inspection tool.
+
+Update checking takes place by querying the latest stable GitHub release, comparing its tag against the version currently in the winget repository. The x86, x64 and arm64 portable executables are submitted.
+
 ### Cockos.REAPER
 [REAPER](http://reaper.fm/) is a digital audio production application, offering full multitrack audio and MIDI recording, processing, editing, mixing and mastering toolset.
 
