@@ -14,16 +14,6 @@ Update checking takes place by querying the latest stable GitHub release, compar
 
 Update checking takes place by polling the REAPER update endpoint, passing the version that is currently the latest version available in de winget repository.
 
-### NVAccess.NVDA
-[NonVisual Desktop Access (NVDA)](https://www.nvaccess.org/) is a free and open source screen reader for the Microsoft Windows operating system. Providing feedback via synthetic speech and Braille, it enables blind or vision impaired people to access computers running Windows for no more cost than a sighted person. NVDA is developed by NV Access, with contributions from the community.
-
-Update checking takes place by polling the NVDA update endpoint, comparing the version  against the version that is currently the latest version available in de winget repository.
-
-### NVAccess.NVDA.Beta
-[NonVisual Desktop Access (NVDA)](https://www.nvaccess.org/) beta channel.
-
-Update checking takes place by polling the NVDA update endpoint using `versionType=beta`, comparing the version against the version currently in the winget repository.
-
 ### QuinGillespie.Paperback
 [Paperback](https://github.com/trypsynth/paperback) is an accessible, light-weight, cross-platform ebook and document reader.
 
